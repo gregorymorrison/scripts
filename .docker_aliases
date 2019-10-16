@@ -1,5 +1,3 @@
-# alias docker='/mnt/c/Program\ Files/Docker/Docker/resources/bin/docker.exe'
-
 alias dcheckpoint='docker checkpoint'
 alias dconfig='docker config'
 alias dcontainer='docker container'
