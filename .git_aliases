@@ -253,3 +253,10 @@ alias gbranchrename='gitRenameBranch $1 $(git rev-parse --abbrev-ref HEAD)'
 alias ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --all"
 alias ggraph2="git log --graph --all --format=format:'%C(bold yellow)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)- %an%C(reset)' --abbrev-commit"
 
+gitCheckout() {
+	git checkout $1
+}
+alias gcheckm='gitCheckout master'
+alias gcheckd='gitCheckout development'
+alias gcheckdev='gitCheckout development'
+

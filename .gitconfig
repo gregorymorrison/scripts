@@ -1,11 +1,16 @@
 [user]
     name = Gregory Morrison
+    email = greg.morrison@gmail.com
 [core]
-    autocrlf = input
-    eol = lf
+	autocrlf = input
+	editor = vim
+	eol = lf
+	excludesfile =
     longpaths = true
 [push]
-    default = simple
+	default = simple
+[merge]
+    tool = vim
 [mergetool]
     keeptemporaries = false
     keepbackups = false

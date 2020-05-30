@@ -116,3 +116,13 @@ set number
 set path=$PWD/**
 set cursorline
 
+" danielmiessler.com/study/vim
+" remap escape to jk
+inoremap jk <ESC>
+" remap leader key to space
+let mapleader = " "
+
+set encoding=utf8
+" map your system keyboard to Vim's paste buffer
+set clipboard=unnamedplus
+
