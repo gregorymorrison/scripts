@@ -46,7 +46,7 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls comand as well
 #
 # Whenever displaying the prompt, write the previous line to disk
 export PROMPT_COMMAND="history -a"
-source "${HOME}/.git_prompt"
+# source "${HOME}/.config/.git_prompt"
 
 # https://mhoffman.github.io/2015/05/21/how-to-navigate-directories-with-the-shell.html
 bind '"\e[A":history-search-backward'
@@ -54,25 +54,38 @@ bind '"\e[B":history-search-forward'
 
 # Aliases
 #
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.config/.bash_aliases ]; then
+	. ~/.config/.bash_aliases
 fi
-if [ -f ~/.bash_functions ]; then
-	. ~/.bash_functions
+if [ -f ~/.config/.bash_functions ]; then
+	. ~/.config/.bash_functions
 fi
-if [ -f ~/.docker_aliases ]; then
-	. ~/.docker_aliases
+if [ -f ~/projects/scripts/.docker_aliases ]; then
+	. ~/projects/scripts/.docker_aliases
 fi
-if [ -f ~/.git_aliases ]; then
-	. ~/.git_aliases
+if [ -f ~/projects/scripts/.git_aliases ]; then
+	. ~/projects/scripts/.git_aliases
 fi
-if [ -f ~/.git_prompt ]; then
-	. ~/.git_prompt
+if [ -f ~/projects/scripts/.git_prompt ]; then
+	. ~/projects/scripts/.git_prompt
 fi
 
-# https://github.com/mhoffman/mhoffman.github.com/blob/master/_posts/2015-05-21-how-to-navigate-directories-with-the-shell.md
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
+cd() {
+	if [ -n "$1" ]; then
+		builtin cd "$@" && ls --group-directories-first --color
+	else
+		builtin cd ~ && ls --group-directories-first --color
+	fi
+}
+
+GOPATH=$HOME/go
+function _update_ps1() {
+	PS1="$($GOPATH/bin/powerline-go -error $?)"
+}
+if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 
 export DISPLAY=localhost:0
 

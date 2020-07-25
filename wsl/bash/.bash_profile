@@ -1,6 +1,6 @@
 # source the user's bashrc if it exists
-if [ -f "${HOME}/.bashrc" ] ; then
-	source "${HOME}/.bashrc"
+if [ -f "${HOME}/.config/.bashrc" ] ; then
+	source "${HOME}/.config/.bashrc"
 fi
 
 # Set PATH so it includes user's private bin if it exists
@@ -18,3 +18,5 @@ fi
 #    INFOPATH="${HOME}/info:${INFOPATH}"
 # fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

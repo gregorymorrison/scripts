@@ -104,17 +104,29 @@ set cul
 
 set smartindent
 set tabstop=4
+" Set autoindent spacing.
 set shiftwidth=4
+" Shift to the next round tab stop.
+set shiftround
 set softtabstop=4
 set smarttab
 
 set showmatch
 set hl=l:Visual
+" Case-insensitive Pattern Matching
 set ignorecase
+"Overrides ignorecase if pattern contains upcase
+set smartcase
 
 set number
+set relativenumber
+" Toggle Relative Number
+nnoremap <silent> <leader>nb :set relativenumber!<CR>
+
 set path=$PWD/**
 set cursorline
+
+set backupdir=~/.vim.backup
 
 " danielmiessler.com/study/vim
 " remap escape to jk
@@ -125,4 +137,56 @@ let mapleader = " "
 set encoding=utf8
 " map your system keyboard to Vim's paste buffer
 set clipboard=unnamedplus
+
+
+" Quickly quit editing without save
+nnoremap <leader>q :q!<CR>
+" Save the file (handling the permission-denied error)
+cnoremap w!! w !sudo tee % >/dev/null
+" Make j and k move to the next row, not file line
+nnoremap j gj
+nnoremap k gk
+" Home & End should be placed next to each other
+nnoremap - $
+" Move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+" Keep search results at the center of screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+" Press <leader> Enter to remove search highlights
+noremap <silent> <leader><cr> :noh<cr>
+
+" Switch between tabs
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
+nnoremap <Leader>6 6gt
+nnoremap <Leader>7 7gt
+nnoremap <Leader>8 8gt
+nnoremap <Leader>9 9gt
+
+" Easily create a new tab
+noremap <Leader>tN :tabnew<CR>
+" Easily close a new tab
+noremap <Leader>tc :tabclose<CR>
+" Easily move a new tab
+noremap <Leader>tm :tabmove<CR>
+" Easily go to next tab
+noremap <Leader>tn :tabnext<CR>
+" Easily go to previous tab
+noremap <Leader>tp :tabprevious<CR>
+
+" Powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
+set laststatus=2
 
