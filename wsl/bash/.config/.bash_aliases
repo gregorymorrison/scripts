@@ -45,7 +45,7 @@ alias .............="cd ../../../../../../../../../../../.."
 
 alias targz='tar -czvf "$1" "$2"'
 alias untargz='tar -xzvf "$1" "$2"'
-alias fixclock='sudo hwclock -s'
+alias fixclock='hwclock -s'
 
 alias freaks="echo 'Gooble Gobble, we accept you, one of us!'"
 alias whale='docker run docker-whale'
