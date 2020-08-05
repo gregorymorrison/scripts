@@ -7,6 +7,7 @@ alias sudo='sudo '
 # Shell options
 #
 # See man bash for more options...
+set -o vi
 #
 # Don't wait for job termination notification
 # set -o notify
