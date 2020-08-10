@@ -55,17 +55,17 @@ bind '"\e[B":history-search-forward'
 
 # Aliases
 #
-if [ -f ~/.config/.bash_aliases ]; then
-	. ~/.config/.bash_aliases
+if [ -f ~/projects/scripts/wsl/bash/.config/.bash_aliases ]; then
+	. ~/projects/scripts/wsl/bash/.config/.bash_aliases
 fi
-if [ -f ~/.config/.bash_functions ]; then
-	. ~/.config/.bash_functions
+if [ -f ~/projects/scripts/wsl/bash/.config/.bash_functions ]; then
+	. ~/projects/scripts/wsl/bash/.config/.bash_functions
 fi
-if [ -f ~/projects/scripts/.docker_aliases ]; then
-	. ~/projects/scripts/.docker_aliases
+if [ -f ~/projects/scripts/wsl/bash/.config/.docker_aliases ]; then
+	. ~/projects/scripts/wsl/bash/.config/.docker_aliases
 fi
-if [ -f ~/projects/scripts/.git_aliases ]; then
-	. ~/projects/scripts/.git_aliases
+if [ -f ~/projects/scripts/wsl/bash/.config/.git_aliases ]; then
+	. ~/projects/scripts/wsl/bash/.config/.git_aliases
 fi
 if [ -f ~/projects/scripts/.git_prompt ]; then
 	. ~/projects/scripts/.git_prompt
@@ -86,6 +86,14 @@ function _update_ps1() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
+
+function weather (){
+    curl wttr\.in/"Washington DC"?0?A?u
+}
+weather
+function displayweather () {
+	while sleep 60 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
+}
 
 
 export DISPLAY=localhost:0
