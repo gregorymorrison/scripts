@@ -87,12 +87,15 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+export PATH=/usr/local/bin:$PATH
+
 function weather (){
     curl wttr\.in/"Washington DC"?0?A?u
 }
 weather
 function displayweather () {
-	while sleep 60 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
+	weather
+	while sleep 600 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
 }
 
 

@@ -46,8 +46,9 @@ alias .............="cd ../../../../../../../../../../../.."
 alias targz='tar -czvf "$1" "$2"'
 alias untargz='tar -xzvf "$1" "$2"'
 alias fixclock='hwclock -s'
-
-alias euler='cd ~/projects/euler'
+alias fixclock1='ntpdate time.windows.com'
+alias euler='cd ~/projects/euler1'
+alias euler1=euler
 
 alias freaks="echo 'Gooble Gobble, we accept you, one of us!'"
 alias whale='docker run docker-whale'

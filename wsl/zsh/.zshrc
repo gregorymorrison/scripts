@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+. ~/projects/scripts/wsl/bash/.config/.bash_aliases
 . ~/projects/scripts/wsl/bash/.config/.docker_aliases
 . ~/projects/scripts/wsl/bash/.config/.git_aliases
 
@@ -112,4 +113,5 @@ cd() {
 
 powerline-daemon -q
 . /usr/share/powerline/bindings/zsh/powerline.zsh
+
 
