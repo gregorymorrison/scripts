@@ -136,7 +136,7 @@ let mapleader = " "
 
 set encoding=utf8
 " map your system keyboard to Vim's paste buffer
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 
 " Quickly quit editing without save
