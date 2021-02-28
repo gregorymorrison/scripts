@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. ~/dotfiles/wsl/bash/.config/.bash_aliases
+# . ~/dotfiles/wsl/bash/.config/.bash_aliases
 . ~/dotfiles/wsl/bash/.config/.docker_aliases
 . ~/dotfiles/wsl/bash/.config/.git_aliases
 
