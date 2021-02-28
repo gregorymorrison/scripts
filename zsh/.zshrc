@@ -100,8 +100,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. ~/development/scripts/wsl/bash/.config/.docker_aliases
-. ~/development/scripts/wsl/bash/.config/.git_aliases
+. ~/dotfiles/wsl/bash/.config/.bash_aliases
+. ~/dotfiles/wsl/bash/.config/.docker_aliases
+. ~/dotfiles/wsl/bash/.config/.git_aliases
 
 export GOPATH=/usr/local/Cellar/powerline-go/1.21.0
 
