@@ -137,7 +137,7 @@ let mapleader = " "
 
 set encoding=utf8
 " map your system keyboard to Vim's paste buffer
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 
 " Quickly quit editing without save
@@ -185,9 +185,9 @@ noremap <Leader>tn :tabnext<CR>
 noremap <Leader>tp :tabprevious<CR>
 
 " Powerline
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
 
 set laststatus=2
 
