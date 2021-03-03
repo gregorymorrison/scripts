@@ -4,10 +4,10 @@
 " Last change:	2008 Dec 17
 "
 " To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+"   for Unix and OS/2:  ~/.vimrc
+"   for Amiga:  s:.vimrc
+"   for MS-DOS and Win32:  $VIM\_vimrc
+"   for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -26,6 +26,7 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
+set backupdir=~/.vim/backup
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -66,8 +67,8 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 100 characters.
+  autocmd FileType text setlocal textwidth=100
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -95,10 +96,8 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-
 " http://spectlog.com/content/Fixing_vi_editor_on_cygwin_terminal
 colorscheme desert
-syntax on
 
 set cul
 
@@ -109,7 +108,8 @@ set shiftwidth=4
 " Shift to the next round tab stop.
 set shiftround
 set softtabstop=4
-set smarttab
+" set smarttab
+set expandtab
 
 set showmatch
 set hl=l:Visual
@@ -126,7 +126,8 @@ nnoremap <silent> <leader>nb :set relativenumber!<CR>
 set path=$PWD/**
 set cursorline
 
-set backupdir=~/.vim.backup
+set tildeop
+
 
 " danielmiessler.com/study/vim
 " remap escape to jk
@@ -189,4 +190,85 @@ python3 powerline_setup()
 python3 del powerline_setup
 
 set laststatus=2
+
+" Netrw config
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+	if exists("t:expl_buf_num")
+		let expl_win_num = bufwinnr(t:expl_buf_num)
+		if expl_win_num != -1
+			let cur_win_nr = winnr()
+			exec expl_win_num . 'wincmd w'
+			close
+			exec cur_win_nr . 'wincmd w'
+			unlet t:expl_buf_num
+		else
+			unlet t:expl_buf_num
+		endif
+	else
+		exec 'lwincmd w'
+		Vexplore
+		let t:expl_buf_num = bufnr("%")
+	endif
+endfunction
+" map  :call ToggleVExplorer()<CR>
+
+" Change directory to the current buffer when opening files.
+set autochdir
+
+set listchars=tab:>-,trail:-
+" Toggle whitespace in vimdiff
+if &diff
+	function! IwhiteToggle()
+		if &diffopt =~ 'iwhite'
+			set diffopt-=iwhite
+		else
+			set diffopt+=iwhite
+		endif
+	endfunction
+	map ws :call IwhiteToggle()<CR>
+endif
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" save undo trees in files
+set undofile
+set undodir=~/.vim/undo
+" number of undo saved
+set undolevels=10000
+
+
+packadd! matchit
+
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'frazrepo/vim-rainbow'
+
+Plug 'vim-scripts/taglist.vim'
+" :Tlist
+
+Plug 'tpope/vim-fugitive'
+" :Git status
+
+Plug 'scrooloose/nerdtree'
+" :NERDTree
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'flazz/vim-colorschemes'
+
+call plug#end()
+
+" vim-rainbow
+let g:rainbow_active = 1
 
