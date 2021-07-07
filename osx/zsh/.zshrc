@@ -1,16 +1,16 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:~/.local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/greg/.oh-my-zsh"
+export ZSH="/Users/greg/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="random"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -35,7 +35,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -100,21 +100,28 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
+# . ~/dotfiles/wsl/bash/.config/.bash_aliases
+. ~/dotfiles/wsl/bash/.config/.docker_aliases
+. ~/dotfiles/wsl/bash/.config/.git_aliases
 
-. ~/projects/scripts/wsl/bash/.config/.bash_aliases
-. ~/projects/scripts/wsl/bash/.config/.docker_aliases
-. ~/projects/scripts/wsl/bash/.config/.git_aliases
+export GOPATH=/usr/local/Cellar/powerline-go/1.21.0
 
-cd() {
-	if [ -n "$1" ]; then
-		builtin cd "$@" && ls --group-directories-first --color
-	else
-		builtin cd ~ && ls --group-directories-first --color
-	fi
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+function powerline_precmd() {
+    PS1="$($GOPATH/bin/powerline-go -error $? -shell zsh)"
 }
 
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
 
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
 

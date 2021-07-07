@@ -112,7 +112,9 @@ set softtabstop=4
 set expandtab
 
 set showmatch
-set hl=l:Visual
+if !has('nvim')
+  set hl=l:Visual
+endif
 " Case-insensitive Pattern Matching
 set ignorecase
 "Overrides ignorecase if pattern contains upcase
@@ -253,6 +255,7 @@ packadd! matchit
 call plug#begin('~/.vim/plugged')
 
 Plug 'frazrepo/vim-rainbow'
+" vim-rainbow
 
 Plug 'vim-scripts/taglist.vim'
 " :Tlist
@@ -271,4 +274,6 @@ call plug#end()
 
 " vim-rainbow
 let g:rainbow_active = 1
+" :NERDTree
+map <F2> :NERDTreeToggle<CR>
 

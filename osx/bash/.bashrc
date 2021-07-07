@@ -53,24 +53,22 @@ export PROMPT_COMMAND="history -a"
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-. /usr/share/autojump/autojump.sh
-
 # Aliases
 #
-if [ -f ~/projects/scripts/wsl/bash/.config/.bash_aliases ]; then
-	. ~/projects/scripts/wsl/bash/.config/.bash_aliases
+if [ -f ~/dotfiles/osx/wsl/bash/.config/.bash_aliases ]; then
+	. ~/dotfiles/osx/wsl/bash/.config/.bash_aliases
 fi
-if [ -f ~/projects/scripts/wsl/bash/.config/.bash_functions ]; then
-	. ~/projects/scripts/wsl/bash/.config/.bash_functions
+if [ -f ~/dotfiles/osx/wsl/bash/.config/.bash_functions ]; then
+	. ~/dotfiles/osx/wsl/bash/.config/.bash_functions
 fi
-if [ -f ~/projects/scripts/wsl/bash/.config/.docker_aliases ]; then
-	. ~/projects/scripts/wsl/bash/.config/.docker_aliases
+if [ -f ~/dotfiles/osx/wsl/bash/.config/.docker_aliases ]; then
+	. ~/dotfiles/osx/wsl/bash/.config/.docker_aliases
 fi
-if [ -f ~/projects/scripts/wsl/bash/.config/.git_aliases ]; then
-	. ~/projects/scripts/wsl/bash/.config/.git_aliases
+if [ -f ~/dotfiles/osx/wsl/bash/.config/.git_aliases ]; then
+	. ~/dotfiles/osx/wsl/bash/.config/.git_aliases
 fi
-if [ -f ~/projects/scripts/.git_prompt ]; then
-	. ~/projects/scripts/.git_prompt
+if [ -f ~/dotfiles/osx/.git_prompt ]; then
+	. ~/dotfiles/osx/.git_prompt
 fi
 
 cd() {
@@ -89,9 +87,7 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-export PATH=/usr/local/bin:~/.local/bin:$PATH
-
-export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
+export PATH=/usr/local/bin:$PATH
 
 function weather (){
     curl wttr\.in/"Washington DC"?0?A?u
@@ -101,14 +97,6 @@ function displayweather () {
 	weather
 	while sleep 600 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
 }
-
-
-# Start Docker daemon automatically when logging in if not running.
-RUNNING=`ps aux | grep dockerd | grep -v grep`
-if [ -z "$RUNNING" ]; then
-    sudo dockerd > /dev/null 2>&1 &
-    disown
-fi
 
 
 export DISPLAY=localhost:0

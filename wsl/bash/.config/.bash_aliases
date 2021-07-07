@@ -43,15 +43,20 @@ alias ...........="cd ../../../../../../../../../.."
 alias ............="cd ../../../../../../../../../../.."
 alias .............="cd ../../../../../../../../../../../.."
 
+alias root='sudo su - root'
 alias targz='tar -czvf "$1" "$2"'
 alias untargz='tar -xzvf "$1" "$2"'
+
 alias fixclock='hwclock -s'
 alias fixclock1='ntpdate time.windows.com'
 alias fixclock2='sudo hwclock --hctosys'
+
+alias projects='cd ~/projects'
+alias proj=projects
+alias cfg='cd ~/projects/scripts'
+alias config=cfg
 alias euler='cd ~/projects/euler1'
 alias euler1=euler
-
-alias root='sudo su - root'
 
 alias freaks="echo 'Gooble Gobble, we accept you, one of us!'"
 alias whale='docker run docker-whale'
