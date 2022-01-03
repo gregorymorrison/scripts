@@ -270,10 +270,13 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'flazz/vim-colorschemes'
 
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " vim-rainbow
 let g:rainbow_active = 1
 " :NERDTree
 map <F2> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
