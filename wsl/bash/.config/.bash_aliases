@@ -51,6 +51,8 @@ alias fixclock='hwclock -s'
 alias fixclock1='ntpdate time.windows.com'
 alias fixclock2='sudo hwclock --hctosys'
 
+alias startdocker='sudo service docker start'
+
 alias projects='cd ~/projects'
 alias proj=projects
 alias cfg='cd ~/projects/scripts'

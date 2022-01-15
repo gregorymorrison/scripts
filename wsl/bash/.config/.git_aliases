@@ -66,6 +66,7 @@ alias ggui.tcl='git gui.tcl'
 alias ggui='git gui'
 alias ghash-object='git hash-object'
 alias ghelp='git help'
+alias ghistory='git log -p -- '
 alias ghttp-backend='git http-backend'
 alias ghttp-fetch='git http-fetch'
 alias gimap-send='git imap-send'
@@ -259,4 +260,20 @@ gitCheckout() {
 alias gcheckm='gitCheckout master'
 alias gcheckd='gitCheckout development'
 alias gcheckdev='gitCheckout development'
+
+gitPushd() {
+    export tmp=$(git rev-parse --abbrev-ref HEAD)
+}
+alias gpushd='gitPush'
+gitPopd() {
+    git checkout $tmp
+    unset tmp
+}
+alias gpopd='gitPopd'
+
+alias multipull='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;'
+alias multireset='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} reset --hard \;'
+alias multimaster='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} checkout master \;'
+alias multiprune='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} remote prune origin \;'
+alias multigc='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} gc \;'
 

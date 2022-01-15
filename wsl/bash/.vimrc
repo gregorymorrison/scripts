@@ -1,7 +1,7 @@
 " An example for a vimrc file.
 "
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Dec 17
+" Maintainer:    Bram Moolenaar <Bram@vim.org>
+" Last change:    2008 Dec 17
 "
 " To use it, copy it to
 "   for Unix and OS/2:  ~/.vimrc
@@ -22,15 +22,15 @@ set nocompatible
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup      " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup        " keep a backup file
 endif
 set backupdir=~/.vim/backup
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=1000    " keep 1000 lines of command line history
+set ruler           " show the cursor position all the time
+set showcmd         " display incomplete commands
+set incsearch       " do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -84,7 +84,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -93,7 +93,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+          \ | wincmd p | diffthis
 endif
 
 " http://spectlog.com/content/Fixing_vi_editor_on_cygwin_terminal
@@ -187,9 +187,11 @@ noremap <Leader>tn :tabnext<CR>
 noremap <Leader>tp :tabprevious<CR>
 
 " Powerline
-" python3 from powerline.vim import setup as powerline_setup
-" python3 powerline_setup()
-" python3 del powerline_setup
+if !has('nvim')
+    python3 from powerline.vim import setup as powerline_setup
+    python3 powerline_setup()
+    python3 del powerline_setup
+endif
 
 set laststatus=2
 
@@ -202,22 +204,22 @@ let g:netrw_winsize = 25
 
 " Toggle Vexplore with Ctrl-E
 function! ToggleVExplorer()
-	if exists("t:expl_buf_num")
-		let expl_win_num = bufwinnr(t:expl_buf_num)
-		if expl_win_num != -1
-			let cur_win_nr = winnr()
-			exec expl_win_num . 'wincmd w'
-			close
-			exec cur_win_nr . 'wincmd w'
-			unlet t:expl_buf_num
-		else
-			unlet t:expl_buf_num
-		endif
-	else
-		exec 'lwincmd w'
-		Vexplore
-		let t:expl_buf_num = bufnr("%")
-	endif
+    if exists("t:expl_buf_num")
+        let expl_win_num = bufwinnr(t:expl_buf_num)
+        if expl_win_num != -1
+            let cur_win_nr = winnr()
+            exec expl_win_num . 'wincmd w'
+            close
+            exec cur_win_nr . 'wincmd w'
+            unlet t:expl_buf_num
+        else
+            unlet t:expl_buf_num
+        endif
+    else
+        exec 'lwincmd w'
+        Vexplore
+        let t:expl_buf_num = bufnr("%")
+    endif
 endfunction
 " map  :call ToggleVExplorer()<CR>
 
@@ -227,25 +229,26 @@ set autochdir
 set listchars=tab:>-,trail:-
 " Toggle whitespace in vimdiff
 if &diff
-	function! IwhiteToggle()
-		if &diffopt =~ 'iwhite'
-			set diffopt-=iwhite
-		else
-			set diffopt+=iwhite
-		endif
-	endfunction
-	map ws :call IwhiteToggle()<CR>
+    function! IwhiteToggle()
+        if &diffopt =~ 'iwhite'
+            set diffopt-=iwhite
+        else
+            set diffopt+=iwhite
+        endif
+    endfunction
+    map ws :call IwhiteToggle()<CR>
 endif
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+nnoremap :W :w!
+nnoremap <C-i> i_<Esc>r
 
 " save undo trees in files
 set undofile
 set undodir=~/.vim/undo
-" number of undo saved
 set undolevels=10000
 
 
@@ -279,4 +282,5 @@ let g:rainbow_active = 1
 " :NERDTree
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
 
