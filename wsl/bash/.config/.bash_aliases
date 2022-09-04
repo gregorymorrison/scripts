@@ -60,6 +60,14 @@ alias config=cfg
 alias euler='cd ~/projects/euler1'
 alias euler1=euler
 
+cd() {
+	if [ -n "$1" ]; then
+		builtin cd "$@" && ls F --group-directories-first --color
+	else
+		builtin cd ~ && ls -F --group-directories-first --color
+	fi
+}
+
 alias freaks="echo 'Gooble Gobble, we accept you, one of us!'"
 alias whale='docker run docker-whale'
 

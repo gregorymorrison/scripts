@@ -46,17 +46,13 @@ export HISTTIMEFORMAT="%m/%d/%y %T "
 export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls comand as well
 #
 # Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a"
-# source "${HOME}/.config/.git_prompt"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # https://mhoffman.github.io/2015/05/21/how-to-navigate-directories-with-the-shell.html
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-. /usr/share/autojump/autojump.sh
 
-# Aliases
-#
 if [ -f ~/projects/scripts/wsl/bash/.config/.bash_aliases ]; then
 	. ~/projects/scripts/wsl/bash/.config/.bash_aliases
 fi
@@ -73,13 +69,6 @@ if [ -f ~/projects/scripts/.git_prompt ]; then
 	. ~/projects/scripts/.git_prompt
 fi
 
-cd() {
-	if [ -n "$1" ]; then
-		builtin cd "$@" && ls --group-directories-first --color
-	else
-		builtin cd ~ && ls --group-directories-first --color
-	fi
-}
 
 GOPATH=$HOME/go
 function _update_ps1() {
@@ -93,15 +82,7 @@ export PATH=/usr/local/bin:~/.local/bin:$PATH
 
 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
 
-function weather (){
-    curl wttr\.in/"Washington DC"?0?A?u
-}
-weather
-function displayweather () {
-	weather
-	while sleep 600 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
-}
-
+. /usr/share/autojump/autojump.sh
 
 # Start Docker daemon automatically when logging in if not running.
 RUNNING=`ps aux | grep dockerd | grep -v grep`
@@ -111,5 +92,6 @@ if [ -z "$RUNNING" ]; then
 fi
 
 
-export DISPLAY=localhost:0
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export LIBGL_ALWAYS_INDIRECT=1
 
