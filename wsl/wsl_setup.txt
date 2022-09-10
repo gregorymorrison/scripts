@@ -1,3 +1,6 @@
+sudo apt update
+sudo apt upgrade
+
 sudo apt install -y aptitude
 sudo apt install -y tree dos2unix
 
@@ -24,6 +27,7 @@ sudo apt install -y hollywood asciiquarium nudoku
 
 # Ubuntu 20
 # Ubuntu 22
+sudo apt install -y exa
 
 # X11
 sudo apt install -y xfce4 xfce4-goodies xfce4-terminal
@@ -32,3 +36,28 @@ sudo apt install -y meld
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+mkdir ~/.ssh
+cp /mnt/c/tmp/id_rsa* ~/.ssh/
+
+mkdir ~/projects
+cd ~/projects
+git clone git@github.com:gregorymorrison/scripts.git
+
+cd ~
+ln -sv ~/projects/scripts/wsl/bash/.gitconfig
+ln -sv ~/projects/scripts/wsl/zsh/.oh-my-zsh/
+ln -sv ~/projects/scripts/wsl/bash/.tmux.conf
+ln -sv ~/projects/scripts/wsl/bash/.vimrc
+cd .config
+ln -sv /root/projects/scripts/wsl/bash/.config/.bash_aliases
+ln -sv /root/projects/scripts/wsl/bash/.config/.bashrc
+ln -sv /root/projects/scripts/wsl/bash/.config/.docker_aliases
+ln -sv /root/projects/scripts/wsl/bash/.config/.git_aliases
+ln -sv /root/projects/scripts/wsl/bash/.config/nvim
+ln -sv /root/projects/scripts/wsl/bash/.config/powerline
+
+cd ../.local/
+mkdir bin && cd bin
+ln -sv /usr/bin/batcat bat
+ln -sv /usr/local/bin/lazygit lg
+ln -sv /mnt/c/Windows/System32/wsl.exe wsl
