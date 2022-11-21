@@ -26,7 +26,6 @@ if has("vms")
 else
   set backup        " keep a backup file
 endif
-set backupdir=~/.vim/backup
 set history=1000    " keep 1000 lines of command line history
 set ruler           " show the cursor position all the time
 set showcmd         " display incomplete commands
@@ -42,6 +41,15 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+" Makes folds visible in the sidebar
+set foldcolumn=5
+
+" vim-sensible
+set wildmenu
+set wildmode=longest:full,full
+set display+=lastline
+set tabpagemax=50
+
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -52,6 +60,10 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+endif
+
+if &diff
+    colorscheme gruvbox
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -128,8 +140,9 @@ nnoremap <silent> <leader>nb :set relativenumber!<CR>
 set path=$PWD/**
 set cursorline
 
-set tildeop
+set backupdir=~/.vim/backup
 
+set tildeop
 
 " danielmiessler.com/study/vim
 " remap escape to jk
@@ -163,6 +176,10 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 " Press <leader> Enter to remove search highlights
 noremap <silent> <leader><cr> :noh<cr>
+
+" Allow vim to update only the necessary characters on the screen
+set lazyredraw
+set ttyfast
 
 " Switch between tabs
 nnoremap <Leader>1 1gt
@@ -247,6 +264,7 @@ nnoremap :W :w!
 nnoremap <C-i> i_<Esc>r
 
 " save undo trees in files
+" Persistent undo, even if you close and reopen Vim.
 set undofile
 set undodir=~/.vim/undo
 set undolevels=10000
@@ -283,4 +301,9 @@ let g:rainbow_active = 1
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
+" Open NERDTree in new tabs and windows if no command-line args set
+autocmd VimEnter * if !argc() | NERDTree | endif
+autocmd BufEnter * if !argc() | NERDTreeMirror | endif
+
+hi Normal guibg=NONE ctermbg=NONE
 

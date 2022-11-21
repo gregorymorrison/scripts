@@ -10,7 +10,7 @@ function displayweather () {
 	weather
 	while sleep 600 ; do x="$( weather 2>&1 )" ; clear ; echo "$x" ; done
 }
-weather
+# weather
 
 randimg () {
     word=$( shuf -n 1 /usr/share/dict/words )
