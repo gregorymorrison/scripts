@@ -4,11 +4,6 @@
 # application. To override the alias instrution use a \ before, ie
 # \rm will call the real rm not the alias.
 
-# some more ls aliases
-alias ll='ls -alF'
-alias ls='ls -A'
-alias l='ls -CF'
-
 # Interactive operation...
 alias rm='rm -i'
 alias cp='cp -i'
@@ -27,6 +22,9 @@ alias fgrep='fgrep --color=auto'        # show differences in color
 
 # Some shortcuts for different directory listings
 alias ls='ls -hF --color=tty'           # classify files in color
+alias ll='ls -alF'
+alias ls='ls -A'
+alias l='ls -CF'
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 
@@ -62,7 +60,7 @@ alias euler1=euler
 
 cd() {
 	if [ -n "$1" ]; then
-		builtin cd "$@" && ls F --group-directories-first --color
+		builtin cd "$@" && ls -F --group-directories-first --color
 	else
 		builtin cd ~ && ls -F --group-directories-first --color
 	fi
