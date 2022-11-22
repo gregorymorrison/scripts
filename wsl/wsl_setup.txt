@@ -56,7 +56,6 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
-ln -sv /usr/local/bin/lazygit lg
 
 mkdir ~/.ssh
 cp /mnt/c/tmp/id_rsa* ~/.ssh/
@@ -72,8 +71,11 @@ ln -sv ~/projects/scripts/wsl/bash/.gitconfig
 ln -sv ~/projects/scripts/wsl/zsh/.oh-my-zsh/
 ln -sv ~/projects/scripts/wsl/bash/.tmux.conf
 ln -sv ~/projects/scripts/wsl/bash/.vimrc
+ln -sv ~/projects/scripts/wsl/zsh/.zshrc
 mv .bashrc .bashrc~
-cd .config
+
+mkdir ~/.config
+cd ~/.config
 ln -sv ~/projects/scripts/wsl/bash/.config/.bash_aliases
 ln -sv ~/projects/scripts/wsl/bash/.config/.bashrc
 ln -sv ~/projects/scripts/wsl/bash/.config/.docker_aliases
@@ -81,7 +83,8 @@ ln -sv ~/projects/scripts/wsl/bash/.config/.git_aliases
 ln -sv ~/projects/scripts/wsl/bash/.config/nvim
 ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
-cd ../.local/
-mkdir bin && cd bin
+# cd ~/.local/
+# mkdir bin && cd bin
 ln -sv /usr/bin/batcat /usr/local/bin/bat
-ln -sv /mnt/c/Windows/System32/wsl.exe wsl
+ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
+ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
