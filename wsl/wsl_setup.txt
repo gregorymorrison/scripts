@@ -73,7 +73,6 @@ ln -sv ~/projects/scripts/wsl/bash/.tmux.conf
 ln -sv ~/projects/scripts/wsl/bash/.vimrc
 ln -sv ~/projects/scripts/wsl/zsh/.zshrc
 mv .bashrc .bashrc~
-
 mkdir ~/.config
 cd ~/.config
 ln -sv ~/projects/scripts/wsl/bash/.config/.bash_aliases
@@ -85,6 +84,6 @@ ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
 # cd ~/.local/
 # mkdir bin && cd bin
-ln -sv /usr/bin/batcat /usr/local/bin/bat
-ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
-ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
+sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
+sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
+sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
