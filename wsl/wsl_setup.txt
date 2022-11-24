@@ -68,11 +68,13 @@ git clone git@github.com:gregorymorrison/scripts.git
 cd ~
 ln -sv ~/projects/scripts/wsl/bash/.bash_profile
 ln -sv ~/projects/scripts/wsl/bash/.gitconfig
+mv ~/.oh-my-zsh ~/.oh-my-zsh~
 ln -sv ~/projects/scripts/wsl/zsh/.oh-my-zsh/
 ln -sv ~/projects/scripts/wsl/bash/.tmux.conf
 ln -sv ~/projects/scripts/wsl/bash/.vimrc
+mv ~/.zshrc ~/.zshrc~
 ln -sv ~/projects/scripts/wsl/zsh/.zshrc
-mv .bashrc .bashrc~
+mv ~/.bashrc ~/.bashrc~
 mkdir ~/.config
 cd ~/.config
 ln -sv ~/projects/scripts/wsl/bash/.config/.bash_aliases
@@ -87,3 +89,8 @@ ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
 sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
+
+unset DISPLAY
+pip install powerline-status
+powerline-daemon --replace
+
