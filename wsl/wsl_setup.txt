@@ -56,6 +56,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+rm -f lazygit.tar.gz
 
 mkdir ~/.ssh
 cp /mnt/c/tmp/id_rsa* ~/.ssh/
@@ -89,6 +90,8 @@ ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
 sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
+
+mkdir ~/.vim/backup
 
 unset DISPLAY
 pip install powerline-status
