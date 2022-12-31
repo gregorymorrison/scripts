@@ -78,6 +78,14 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+# Powerline configuration
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  source /usr/share/powerline/bindings/bash/powerline.sh
+fi
+
 export PATH=/usr/local/bin:~/.local/bin:$PATH
 
 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64

@@ -21,7 +21,6 @@ sudo apt install -y tmux tmuxinator
 sudo apt install -y exuberant-ctags
 sudo apt install -y git
 sudo apt install -y zsh fish
-sudo apt install -y powerline fonts-powerline zsh-theme-powerlevel9k
 sudo apt install -y ncdu atop nmon iftop glances
 sudo apt install -y ripgrep fzf autojump fd-find httpie jq
 sudo apt install -y golang-go
@@ -31,6 +30,10 @@ sudo apt install -y nodejs npm
 
 sudo apt install -y weather-util
 sudo apt install -y hollywood nudoku
+
+go get -u github.com/justjanne/powerline-go
+# or
+sudo apt install -y powerline fonts-powerline zsh-theme-powerlevel9k
 
 # Ubuntu 20
 sudo apt install -y prettyping
@@ -80,7 +83,6 @@ ln -sv ~/projects/scripts/wsl/bash/.gitconfig
 mv ~/.oh-my-zsh ~/.oh-my-zsh~
 ln -sv ~/projects/scripts/wsl/zsh/.oh-my-zsh/
 ln -sv ~/projects/scripts/wsl/bash/.tmux.conf
-ln -sv ~/projects/scripts/wsl/bash/.vimrc
 mv ~/.zshrc ~/.zshrc~
 ln -sv ~/projects/scripts/wsl/zsh/.zshrc
 mv ~/.bashrc ~/.bashrc~
@@ -99,7 +101,8 @@ sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
 sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
 
-mkdir ~/.vim/backup
+mkdir -p ~/.vim/backup
+ln -sv ~/projects/scripts/wsl/bash/.vimrc ~/.vimrc
 
 unset DISPLAY
 pip install powerline-status
