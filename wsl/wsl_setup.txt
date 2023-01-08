@@ -41,13 +41,11 @@ sudo apt install -y powerline-gitstatus
 sudo apt install -y fzf fd-find
 sudo apt install -y show-motd
 sudo apt install -y Dpkg::Options::="--force-overwrite" bat ripgrep
-sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 
 # also
 curl -o bat.zip -L https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz
 tar -xvzf bat.zip
-sudo mv bat-v0.22.1-x86_64-unknown-linux-musl /usr/local/bat
-sudo ln /usr/local/bat/bat /usr/local/bin/bat
+sudo mv bat-v0.22.1-x86_64-unknown-linux-musl /usr/bin/batcat
 rm -f bat.zip
 
 # Ubuntu 22
@@ -73,7 +71,7 @@ omf install agnoster
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
 rm -f lazygit.tar.gz
 
 mkdir ~/.ssh
@@ -104,9 +102,9 @@ ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
 # cd ~/.local/
 # mkdir bin && cd bin
-sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
-sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
-sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
+sudo ln -sv /usr/bin/batcat /home/greg/.local/bin/bat
+sudo ln -sv /usr/bin/lazygit /home/greg/.local/bin/lg
+sudo ln -sv /mnt/c/Windows/System32/wsl.exe /home/greg/.local/bin/wsl
 
 
 mkdir -p ~/.vim/backup
