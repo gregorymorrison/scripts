@@ -44,7 +44,7 @@ sudo apt install -y Dpkg::Options::="--force-overwrite" bat ripgrep
 sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 
 # also
-curl -o bat.zip -L https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-v0.18.2-x86_64-unknown-linux-musl.tar.gz
+curl -o bat.zip -L https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz
 tar -xvzf bat.zip
 sudo mv bat-v0.22.1-x86_64-unknown-linux-musl /usr/local/bat
 sudo ln /usr/local/bat/bat /usr/local/bin/bat
