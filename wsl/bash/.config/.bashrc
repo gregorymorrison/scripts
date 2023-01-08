@@ -70,6 +70,7 @@ if [ -f ~/projects/scripts/.git_prompt ]; then
 fi
 
 
+# Powerline configuration
 GOPATH=$HOME/go
 function _update_ps1() {
 	PS1="$($GOPATH/bin/powerline-go -error $?)"
@@ -77,8 +78,7 @@ function _update_ps1() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
-
-# Powerline configuration
+# or
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
