@@ -119,3 +119,5 @@ unset DISPLAY
 pip install powerline-status
 powerline-daemon --replace
 
+bash -l
+
