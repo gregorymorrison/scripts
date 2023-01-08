@@ -48,6 +48,7 @@ curl -o bat.zip -L https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-
 tar -xvzf bat.zip
 sudo mv bat-v0.22.1-x86_64-unknown-linux-musl /usr/local/bat
 sudo ln /usr/local/bat/bat /usr/local/bin/bat
+rm -f bat.zip
 
 # Ubuntu 22
 sudo apt install -y batcat exa
