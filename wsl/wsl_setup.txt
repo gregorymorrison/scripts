@@ -102,9 +102,9 @@ ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
 # cd ~/.local/
 # mkdir bin && cd bin
-sudo ln -sv /usr/bin/batcat /home/greg/.local/bin/bat
-sudo ln -sv /usr/bin/lazygit /home/greg/.local/bin/lg
-sudo ln -sv /mnt/c/Windows/System32/wsl.exe /home/greg/.local/bin/wsl
+ln -sv /usr/bin/batcat /home/greg/.local/bin/bat
+ln -sv /usr/bin/lazygit /home/greg/.local/bin/lg
+ln -sv /mnt/c/Windows/System32/wsl.exe /home/greg/.local/bin/wsl
 
 
 mkdir -p ~/.vim/backup
