@@ -64,6 +64,8 @@ sudo apt install -y x11-apps
 sudo apt install -y meld
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+omz theme use agnoster
+omz theme set agnoster
 
 curl -L https://get.oh-my.fish | fish
 omf update omf
