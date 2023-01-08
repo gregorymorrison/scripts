@@ -275,22 +275,16 @@ packadd! matchit
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'frazrepo/vim-rainbow'
 " vim-rainbow
-
-Plug 'vim-scripts/taglist.vim'
+Plug 'frazrepo/vim-rainbow'
 " :Tlist
-
-Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/taglist.vim'
 " :Git status
-
-Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 " :NERDTree
-
+Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-
 Plug 'flazz/vim-colorschemes'
-
 Plug 'junegunn/fzf.vim'
 
 call plug#end()

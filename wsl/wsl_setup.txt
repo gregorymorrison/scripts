@@ -101,8 +101,14 @@ sudo ln -sv /usr/bin/batcat /usr/local/bin/bat
 sudo ln -sv /usr/local/bin/lazygit /usr/local/bin/lg
 sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
 
+
 mkdir -p ~/.vim/backup
 ln -sv ~/projects/scripts/wsl/bash/.vimrc ~/.vimrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# vim +PluginInstall +qall
+vim +PlugInstall +qall
+
 
 unset DISPLAY
 pip install powerline-status
