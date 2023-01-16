@@ -86,7 +86,7 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-export PATH=/usr/local/bin:~/.local/bin:$PATH
+export PATH=/usr/local/bin:~/.local/bin:/etc/alternatives:$PATH
 
 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
 

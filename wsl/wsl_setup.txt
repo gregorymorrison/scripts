@@ -106,6 +106,8 @@ ln -sv /usr/bin/batcat/bat /home/greg/.local/bin/bat
 ln -sv /usr/bin/lazygit /home/greg/.local/bin/lg
 ln -sv /mnt/c/Windows/System32/wsl.exe /home/greg/.local/bin/wsl
 
+sudo ln -sv /usr/bin/python3.8 /etc/alternatives/python
+
 
 mkdir -p ~/.vim/backup
 ln -sv ~/projects/scripts/wsl/bash/.vimrc ~/.vimrc
