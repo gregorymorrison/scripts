@@ -68,7 +68,10 @@ omf update omf
 omf install agnoster
 
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt install -y nodejs npm
+sudo apt install -y nodejs
+sudo npm i -g n
+sudo n install latest
+sudo n
 
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
