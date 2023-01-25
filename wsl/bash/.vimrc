@@ -108,18 +108,15 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-" http://spectlog.com/content/Fixing_vi_editor_on_cygwin_terminal
-colorscheme desert
-
 set cul
 
 set smartindent
-set tabstop=4
+set tabstop=2
 " Set autoindent spacing.
-set shiftwidth=4
+set shiftwidth=2
 " Shift to the next round tab stop.
 set shiftround
-set softtabstop=4
+set softtabstop=2
 " set smarttab
 set expandtab
 
@@ -140,7 +137,8 @@ nnoremap <silent> <leader>nb :set relativenumber!<CR>
 set path=$PWD/**
 set cursorline
 
-set backupdir=~/.vim/backup
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
 
 set tildeop
 
@@ -299,5 +297,12 @@ let NERDTreeShowLineNumbers=1
 autocmd VimEnter * if !argc() | NERDTree | endif
 autocmd BufEnter * if !argc() | NERDTreeMirror | endif
 
+" First set color, then set background
+if has('nvim')
+    " http://spectlog.com/content/Fixing_vi_editor_on_cygwin_terminal
+    colorscheme desert
+else
+    colorscheme OceanicNext
+endif
 hi Normal guibg=NONE ctermbg=NONE
 
