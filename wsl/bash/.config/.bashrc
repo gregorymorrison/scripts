@@ -94,10 +94,10 @@ export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
 
 # Start Docker daemon automatically when logging in if not running.
 RUNNING=`ps aux | grep dockerd | grep -v grep`
-if [ -z "$RUNNING" ]; then
-    sudo dockerd > /dev/null 2>&1 &
-    disown
-fi
+# if [ -z "$RUNNING" ]; then
+#   sudo dockerd > /dev/null 2>&1 &
+#   disown
+# fi
 
 
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
