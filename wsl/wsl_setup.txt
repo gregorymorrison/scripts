@@ -8,6 +8,7 @@ sudo zypper ar https://download.opensuse.org/distribution/leap/15.5/repo/oss/ os
 sudo zypper ar https://download.opensuse.org/update/leap/15.5/oss/ oss_update
 sudo zypper refresh
 sudo zypper update
+zypper dup --allow-vendor-change
 
 sudo apt install -y aptitude
 sudo apt install -y tree dos2unix
