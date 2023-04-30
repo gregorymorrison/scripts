@@ -55,6 +55,14 @@ sudo apt install -y tldr
 sudo apt install -y tldr-bash-client tldr-sh-client
 sudo apt install -y asciiquarium
 
+# docker - https://docs.docker.com/engine/install/ubuntu/
+sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+  ./docker-ce_<version>_<arch>.deb \
+  ./docker-ce-cli_<version>_<arch>.deb \
+  ./docker-buildx-plugin_<version>_<arch>.deb \
+  ./docker-compose-plugin_<version>_<arch>.deb
+sudo service docker start
+
 # X11
 sudo apt install -y xfce4 xfce4-goodies xfce4-terminal
 sudo apt install -y x11-apps
