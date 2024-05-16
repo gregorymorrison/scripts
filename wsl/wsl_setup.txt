@@ -56,6 +56,14 @@ sudo apt install -y tldr
 sudo apt install -y tldr-bash-client tldr-sh-client
 sudo apt install -y asciiquarium
 
+sudo apt install -y zoxide
+
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
+rm -f lazygit.tar.gz
+
+
 # docker - https://docs.docker.com/engine/install/ubuntu/
 sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
   ./docker-ce_<version>_<arch>.deb \
@@ -83,11 +91,6 @@ sudo npm i -g n
 sudo n install latest
 sudo n
 
-
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
-rm -f lazygit.tar.gz
 
 mkdir ~/.ssh
 cp /mnt/c/tmp/id_rsa* ~/.ssh/

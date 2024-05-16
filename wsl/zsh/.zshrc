@@ -100,6 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+eval "$(zoxide init zsh)"
+
 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
 
 . ~/projects/scripts/wsl/bash/.config/.bash_aliases

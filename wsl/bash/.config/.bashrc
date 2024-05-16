@@ -69,6 +69,7 @@ if [ -f ~/projects/scripts/.git_prompt ]; then
 	. ~/projects/scripts/.git_prompt
 fi
 
+eval "$(zoxide init bash)"
 
 # Powerline configuration
 GOPATH=$HOME/go
