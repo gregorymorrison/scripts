@@ -69,6 +69,9 @@ if [ -f ~/projects/scripts/.git_prompt ]; then
 	. ~/projects/scripts/.git_prompt
 fi
 
+if [ -f /usr/bin/zoxide ]; then
+  eval "$(zoxide init bash)"
+fi
 
 # Powerline configuration
 GOPATH=$HOME/go
@@ -86,7 +89,7 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-export PATH=/usr/local/bin:~/.local/bin:/etc/alternatives:$PATH
+# export PATH=/usr/local/bin:~/.local/bin:/etc/alternatives:$PATH
 
 export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64
 

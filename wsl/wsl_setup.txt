@@ -24,7 +24,8 @@ sudo apt install -y git
 sudo apt install -y icdiff colordiff diffutils meld adwaita-icon-theme-full
 sudo apt install -y zsh fish
 sudo apt install -y ncdu atop nmon iftop glances
-sudo apt install -y ripgrep fzf autojump fd-find httpie jq
+sudo apt install -y ripgrep fzf autojump fd-find jq
+sudo apt install -y dnsutils httpie
 sudo apt install -y golang-go
 sudo apt install -y neofetch
 
@@ -55,6 +56,25 @@ sudo apt install -y tldr
 # or
 sudo apt install -y tldr-bash-client tldr-sh-client
 sudo apt install -y asciiquarium
+sudo apt install -y zoxide
+
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
+rm -f lazygit.tar.gz
+
+curl -Lo git-delta.tar.gz
+"https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz"
+sudo tar xf git-delta.tar.gz -C /usr/bin git-delta
+rm -f git-delta.tar.gz
+
+# docker - https://docs.docker.com/engine/install/ubuntu/
+sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+  ./docker-ce_<version>_<arch>.deb \
+  ./docker-ce-cli_<version>_<arch>.deb \
+  ./docker-buildx-plugin_<version>_<arch>.deb \
+  ./docker-compose-plugin_<version>_<arch>.deb
+sudo service docker start
 
 # X11
 sudo apt install -y xfce4 xfce4-goodies xfce4-terminal
@@ -75,11 +95,6 @@ sudo npm i -g n
 sudo n install latest
 sudo n
 
-
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
-rm -f lazygit.tar.gz
 
 mkdir ~/.ssh
 cp /mnt/c/tmp/id_rsa* ~/.ssh/
@@ -107,11 +122,10 @@ ln -sv ~/projects/scripts/wsl/bash/.config/.git_aliases
 ln -sv ~/projects/scripts/wsl/bash/.config/nvim
 ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
-# cd ~/.local/
-# mkdir bin && cd bin
-ln -sv /usr/bin/batcat/bat /home/greg/.local/bin/bat
-ln -sv /usr/bin/lazygit /home/greg/.local/bin/lg
-ln -sv /mnt/c/Windows/System32/wsl.exe /home/greg/.local/bin/wsl
+ln -sv /usr/bin/batcat/bat /usr/local/bin/bat
+ln -sv /usr/bin/git-delta /usr/local/bin/delta
+ln -sv /usr/bin/lazygit /usr/local/bin/lg
+ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
 
 sudo ln -sv /usr/bin/python3.8 /etc/alternatives/python
 
