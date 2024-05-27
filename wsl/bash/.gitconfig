@@ -1,21 +1,6 @@
 [user]
     name = Gregory Morrison
     email = greg.morrison@gmail.com
-[core]
-	autocrlf = input
-	editor = vim
-	eol = lf
-	excludesfile =
-    longpaths = true
-[push]
-	default = simple
-[merge]
-    tool = vim
-[mergetool]
-    keeptemporaries = false
-    keepbackups = false
-    prompt = false
-    trustexitcode = false
 [color]
     diff = auto
     status = auto
@@ -23,3 +8,27 @@
     interactive = auto
     ui = always
     pager = true
+[core]
+    autocrlf = input
+    editor = vim
+    eol = lf
+    excludesfile =
+    longpaths = true
+    pager = delta
+[delta]
+    navigate = true
+[diff]
+    colorMoved = default
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+    tool = vim
+[mergetool]
+    keeptemporaries = false
+    keepbackups = false
+    prompt = false
+    trustexitcode = false
+[push]
+	  default = simple
+
