@@ -57,7 +57,7 @@ sudo apt install -y tldr-bash-client tldr-sh-client
 sudo apt install -y asciiquarium
 sudo apt install -y zoxide
 
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+export LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 sudo tar xf lazygit.tar.gz -C /usr/bin lazygit
 rm -f lazygit.tar.gz
@@ -66,6 +66,10 @@ curl -Lo git-delta.tar.gz
 "https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz"
 sudo tar xf git-delta.tar.gz -C /usr/bin git-delta
 rm -f git-delta.tar.gz
+
+curl -Lo /mnt/c/tmp/broot "https://dystroy.org/broot/download/x86_64-unknown-linux-musl/broot"
+sudo cp /mnt/c/tmp/broot /usr/bin/broot
+broot --install
 
 # docker - https://docs.docker.com/engine/install/ubuntu/
 sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
@@ -94,7 +98,6 @@ sudo npm i -g n
 sudo n install latest
 sudo n
 
-
 mkdir ~/.ssh
 cp /mnt/c/tmp/id_rsa* ~/.ssh/
 chmod 400 ~/.ssh/id*
@@ -121,10 +124,10 @@ ln -sv ~/projects/scripts/wsl/bash/.config/.git_aliases
 ln -sv ~/projects/scripts/wsl/bash/.config/nvim
 ln -sv ~/projects/scripts/wsl/bash/.config/powerline
 
-ln -sv /usr/bin/batcat/bat /usr/local/bin/bat
-ln -sv /usr/bin/git-delta /usr/local/bin/delta
-ln -sv /usr/bin/lazygit /usr/local/bin/lg
-ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
+sudo ln -sv /usr/bin/batcat/bat /usr/local/bin/bat
+sudo ln -sv /usr/bin/git-delta /usr/local/bin/delta
+sudo ln -sv /usr/bin/lazygit /usr/local/bin/lg
+sudo ln -sv /mnt/c/Windows/System32/wsl.exe /usr/local/bin/wsl
 
 sudo ln -sv /usr/bin/python3.8 /etc/alternatives/python
 
