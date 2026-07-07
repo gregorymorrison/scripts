@@ -1,11 +1,23 @@
-alias gadd--interactive='git add--interactive'
+#!/bin/bash
+
+# Color definitions
+C_LABEL='\033[0;32m'
+C_PATH='\033[1;33m'
+C_RESET='\033[0m'
+GIT_FORMAT1="%C(red)%h%C(reset) - %C(yellow)%d%C(reset) %s %C(green)(%cr)%C(reset)"
+GIT_FORMAT2="%C(bold yellow)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n          %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%n"
+GIT_FORMAT3="%C(red)%h%C(reset) %C(yellow)%ad%C(reset) | %C(blue)%an%C(reset) | %C(cyan)%s%C(reset)"
+GIT_FORMAT4="%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) %<(70,trunc)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"
+
+# Core git command aliases (corrected spaces)
 alias gadd='git add'
+alias gadd--interactive='git add --interactive'
 alias gam='git am'
 alias gannotate='git annotate'
 alias gapply='git apply'
 alias garch='git archive'
 alias garchive='git archive'
-alias gbisect--helper='git bisect--helper'
+alias gbisect--helper='git bisect --helper'
 alias gbisect='git bisect'
 alias gblame='git blame'
 alias gbranch='git branch'
@@ -19,8 +31,10 @@ alias gcheck-ref-format='git check-ref-format'
 alias gcheck='git checkout'
 alias gcheckout-index='git checkout-index'
 alias gcheckout='git checkout'
-alias gcherry-pick='git cherry-pick'
 alias gcherry='git cherry'
+alias gcherry-pick='git cherry-pick'
+alias gcherrypick='git cherry-pick'
+alias gcp='git cherry-pick'
 alias gcitool='git citool'
 alias gclean='git clean'
 alias gclone='git clone'
@@ -43,7 +57,8 @@ alias gdiff-files='git diff-files'
 alias gdiff-index='git diff-index'
 alias gdiff-tree='git diff-tree'
 alias gdiff='git diff'
-alias gdifftool--helper='git difftool--helper'
+alias gdiffstaged='git diff --cached'
+alias gdifftool--helper='git difftool --helper'
 alias gdifftool='git difftool'
 alias gexport='git fast-export'
 alias gfast-export='git fast-export'
@@ -60,13 +75,13 @@ alias gfsck='git fsck'
 alias ggc='git gc'
 alias gget-tar-commit-id='git get-tar-commit-id'
 alias ggrep='git grep'
-alias ggui--askpass='git gui--askpass'
-alias ggui--askyesno='git gui--askyesno'
+alias ggui--askpass='git gui --askpass'
+alias ggui--askyesno='git gui --askyesno'
 alias ggui.tcl='git gui.tcl'
 alias ggui='git gui'
 alias ghash-object='git hash-object'
 alias ghelp='git help'
-alias ghistory='git log -p -- '
+alias ghistory='git log -p --follow --'
 alias ghttp-backend='git http-backend'
 alias ghttp-fetch='git http-fetch'
 alias gimap-send='git imap-send'
@@ -93,7 +108,7 @@ alias gmerge-resolve='git merge-resolve'
 alias gmerge-subtree='git merge-subtree'
 alias gmerge-tree='git merge-tree'
 alias gmerge='git merge'
-alias gmergetool--lib='git mergetool--lib'
+alias gmergetool--lib='git mergetool --lib'
 alias gmergetool='git mergetool'
 alias gmktag='git mktag'
 alias gmktree='git mktree'
@@ -111,13 +126,15 @@ alias gpeek='git peek-remote'
 alias gprune-packed='git prune-packed'
 alias gprune='git prune'
 alias gpull='git pull'
+alias gpullr='git pull --rebase'
 alias gpush='git push'
 alias gquiltimport='git quiltimport'
 alias gread-tree='git read-tree'
-alias grebase--am='git rebase--am'
-alias grebase--interactive='git rebase--interactive'
-alias grebase--merge='git rebase--merge'
+alias grebase--am='git rebase --am'
+alias grebase--interactive='git rebase --interactive'
+alias grebase--merge='git rebase --merge'
 alias grebase='git rebase'
+alias grebasei='git rebase -i'
 alias greceive-pack='git receive-pack'
 alias greflog='git reflog'
 alias grelink='git relink'
@@ -129,6 +146,8 @@ alias gremote-http='git remote-http'
 alias gremote-https='git remote-https'
 alias gremote-testsvn='git remote-testsvn'
 alias gremote='git remote'
+alias gremotes='git branch -r'
+alias gallbranches='git branch -a'
 alias grepack='git repack'
 alias greplace='git replace'
 alias grepo-config='git repo-config'
@@ -136,13 +155,14 @@ alias grequest-pull='git request-pull'
 alias grequest='git request-pull'
 alias grerere='git rerere'
 alias greset='git reset'
+alias grestore='git restore'
 alias grev-list='git rev-list'
 alias grev-parse='git rev-parse'
 alias grevert='git revert'
 alias grm='git rm'
 alias gsend-email='git send-email'
 alias gsend-pack='git send-pack'
-alias gsh-i18n--envsubst='git sh-i18n--envsubst'
+alias gsh-i18n--envsubst='git sh-i18n --envsubst'
 alias gsh-i18n='git sh-i18n'
 alias gsh-setup='git sh-setup'
 alias gshortlog='git shortlog'
@@ -152,6 +172,9 @@ alias gshow-ref='git show-ref'
 alias gshow='git show'
 alias gstage='git stage'
 alias gstash='git stash'
+alias gstashlist='git stash list --pretty=format:"%C(yellow)%h%C(reset) %s %C(green)(%cr)%C(reset)"'
+alias gstashlog="git stash list --pretty=format:'${GIT_FORMAT4}'"
+alias gstashunstaged='git stash -k'
 alias gstat='git status'
 alias gstatus='git status'
 alias gstrip='git stripspace'
@@ -161,6 +184,8 @@ alias gsubtree='git subtree'
 alias gsvn='git svn'
 alias gsymbolic-ref='git symbolic-ref'
 alias gtag='git tag'
+alias gtags='git tag'
+alias gretag='git fetch --prune origin "+refs/tags/*:refs/tags/*"'
 alias gtar-tree='git tar-tree'
 alias gtar='git tar-tree'
 alias gunpack-file='git unpack-file'
@@ -173,107 +198,398 @@ alias gupload-pack='git upload-pack'
 alias gvar='git var'
 alias gverify-pack='git verify-pack'
 alias gverify-tag='git verify-tag'
-alias gweb--browse='git web--browse'
+alias gweb--browse='git web --browse'
 alias gwhatchanged='git whatchanged'
+alias gworktree='git worktree'
 alias gwrite-tree='git write-tree'
 
-# amend last commit
+# Amend last commit
 alias gamend='git commit --amend --verbose'
-# list all branches, including origin, by last activity, Cygwin
+
+# List all branches, including origin, by last activity
 alias gbranches='git for-each-ref --sort=-committerdate --format="%(HEAD) %(refname:short)  %(committername) %(committerdate:relative)"'
-# list all branches, including origin, by last activity, Windows
-alias gbranches2='git for-each-ref --sort=-committerdate --format="%%(HEAD) %%(refname:short)  %%(committername) %%(committerdate:relative)"'
-# delete a local branch
+
+# Delete a local branch
 alias gbranchdell='git branch -d'
 alias gbranchdl='git branch -d'
 alias gdell='git branch -d'
 alias gdellocal='git branch -d'
 alias gdellocalbranch='git branch -d'
-# delete a remote branch
+
+# Delete a remote branch
 alias gbranchdelr='git push --delete origin'
 alias gbranchdr='git push --delete origin'
 alias gdelr='git push --delete origin'
 alias gdelremote='git push --delete origin'
 alias gdelremotebranch='git push --delete origin'
-# delete both local and remote branches
+
+# Delete both local and remote branches
 alias gbranchd='git branch -d && git push --delete origin'
 alias gbranchdel='git branch -d && git push --delete origin'
 alias gbranchdelete='git branch -d && git push --delete origin'
-# show diff of versions N1 and N2
+
+# Show changes in a commit
+alias gdiffcommit='git diff $1~ $1'
+# Show diff of versions N1 and N2
 alias gdiffv='git diff head~$1..head~$2'
-# show log, including files
+# Show inline diff of current changes
+alias gdiffinline='git diff --word-diff'
+alias gdiffthis='git diff --word-diff'
+# Show log, including files
 alias glogfiles='git log --name-status'
-# push new branch to origin
+alias glogstat='git log --stat'
+# Push new branch to origin
 alias gpushnew='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
-# list contents of all stashes
-alias gstashlist='git stash list --pretty=format:"%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) %<(70,trunc)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"'
-# unadd a file
-alias gunadd='git reset HEAD'
+# Refresh tags stale relative to origin
+alias grefreshtags='git fetch --prune origin "+refs/tags/*:refs/tags/*"'
 
-gitPushAll() {
-	export tmp=$(git rev-parse --abbrev-ref HEAD)
-	git push origin $1 && git push old-origin $1
-	unset tmp
-}
-alias gpushall='gitPushAll'
+# Show last commit
+alias glast='git log -1'
 
-gitPullFrom() {
-	export tmp=$(git rev-parse --abbrev-ref HEAD)
-	git stash
-	git checkout $1
-	git pull
-	git checkout $tmp
-	git stash pop
-	unset tmp
-}
-alias gpullfrom='gitPullFrom'
-alias gpulldev='gitPullFrom development'
-alias gpullmaster='gitPullFrom master'
+# Show current branch
+alias gcurrent='git rev-parse --abbrev-ref HEAD'
+
+# Show branch ahead/behind
+alias gaheadbehind='git status -sb'
+
+# Show untracked files
+alias guntracked='git ls-files --others --exclude-standard'
+
+# Clean up merged branches (delete local branches already merged to current)
+alias gcleanmerged='git branch --merged | grep -v "\\*" | xargs -n 1 git branch -d'
+
+# List contents of all stashes
+alias gstashlog="git stash list --pretty=format:'${GIT_FORMAT4}'"
+
+# Unadd a file
+alias gunadd='git reset HEAD --'
+
+# Functions
 
 gitMergeFrom() {
-	export tmp=$(git rev-parse --abbrev-ref HEAD)
-	git stash
-	git checkout $1
-	git pull
-	git checkout $tmp
-	git merge $1
-	git stash pop
-	unset tmp
+  # Update current branch with changes from given branch
+  local branch="$1"
+  if [[ -z "$branch" ]]; then
+    echo "Usage: gmergefrom <branch>"
+    return 1
+  fi
+  git stash
+  git branch -D "$branch" 2>/dev/null
+  git fetch origin "$branch"
+  git branch "$branch" "origin/$branch"
+  git rebase "$branch"
+  git stash pop || true
 }
 alias gmergefrom='gitMergeFrom'
 alias gmergedev='gitMergeFrom development'
+alias gmergemaster='gitMergeFrom master'
 
 gitRenameBranch() {
-	git branch -m $1 $2         		# Rename branch locally
-	git push origin :$1                 # Delete the old branch
-	git push --set-upstream origin $2   # Push the new branch, set local branch to track the new remote
-}
-alias grename='gitRenameBranch $1 $(git rev-parse --abbrev-ref HEAD)'
-alias gbranchrename='gitRenameBranch $1 $(git rev-parse --abbrev-ref HEAD)'
+  # Rename the current branch to a new name ($1), both locally and on the 'origin' remote.
+  local old_name=$(git rev-parse --abbrev-ref HEAD)
+  local new_name="$1"
 
-alias ggraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --all"
-alias ggraph2="git log --graph --all --format=format:'%C(bold yellow)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)- %an%C(reset)' --abbrev-commit"
+  if [[ -z "$new_name" ]]; then
+    echo "Usage: grename <new-branch-name>"
+    return 1
+  fi
+
+  git branch -m "$new_name" || return 1
+  git push origin --delete "$old_name" || echo "Remote branch delete failed or not needed."
+  git push --set-upstream origin "$new_name"
+}
+alias grename='gitRenameBranch'
+
+alias ggraph="git log --graph --all --abbrev-commit --pretty=format:'${GIT_FORMAT1}'"
+alias ggraph2="git log --graph --all --abbrev-commit --format=format:'${GIT_FORMAT2}' --name-only"
+alias ggraph3="git log --graph --all --abbrev-commit --pretty=format:'${GIT_FORMAT3}' --name-only"
+
+multigraph() {
+  # multigraph n: show n lines of each graph
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} log -n "$1" --graph --all --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' \; -exec echo \; -exec echo \;
+}
+multigraph2() {
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} log -n "$1" --graph --all --format=format:"${GIT_FORMAT2}" --abbrev-commit \; -exec echo \; -exec echo \;
+}
+multifind() {
+  # find commits having comments containing string $1
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} log -i --grep "$1" \; -exec echo \; -exec echo \;
+}
 
 gitCheckout() {
-	git checkout $1
+  # checkout branch $1
+  git checkout "$1"
 }
 alias gcheckm='gitCheckout master'
-alias gcheckd='gitCheckout development'
-alias gcheckdev='gitCheckout development'
 
 gitPushd() {
-    export tmp=$(git rev-parse --abbrev-ref HEAD)
+  # save current branch name
+  export tmp=$(git rev-parse --abbrev-ref HEAD)
 }
-alias gpushd='gitPush'
+alias gpushd='gitPushd'
 gitPopd() {
-    git checkout $tmp
-    unset tmp
+  # checkout branch with saved name
+  git checkout "$tmp"
+  unset tmp
 }
 alias gpopd='gitPopd'
 
-alias multipull='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;'
-alias multireset='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} reset --hard \;'
-alias multimaster='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} checkout master \;'
-alias multiprune='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} remote prune origin \;'
-alias multigc='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} gc \;'
+gitRefetch() {
+  # resync branch with origin
+  local branch="$1"
+  if [[ -z "$branch" ]]; then
+    echo "Usage: gremaster <branch>"
+    return 1
+  fi
+  git branch -D "$branch" 2>/dev/null
+  git fetch origin "$branch"
+  git branch "$branch" "origin/$branch"
+}
+alias gremaster='gitRefetch master'
+
+multigit() {
+  cmd="$*"
+  find . \
+    -type d \( -name 'node_modules' -o -name 'build' -o -name 'dist' \) -prune -o \
+    -type d -name '.git' -print \
+    | sed 's|/\.git$||' \
+    | parallel --no-notice --halt soon,fail=1 'echo "{}"; git -C "{}" '"$cmd"
+}
+alias multipull='multigit pull'
+alias multireset='multigit reset --hard'
+alias multimaster='multigit checkout master'
+alias multistat='multigit status'
+alias multiprune='multigit remote prune origin'
+alias multitag='multigit fetch --prune origin "+refs/tags/*:refs/tags/*"'
+alias multigc='multigit gc'
+
+gitListFiles() {
+  # list all git files with their last commit details
+  for file in $(git ls-files); do
+    echo -e "${C_PATH}$file${C_RESET}"
+    git log -1 --pretty="format:${GIT_FORMAT3}" --date=short -- "$file"
+  done
+}
+alias gdetails='gitListFiles'
+alias gfile='gitListFiles'
+alias gfiledetails='gitListFiles'
+
+gitListFiles2() {
+  for file in $(git ls-files); do
+    echo -e "${C_PATH}$file${C_RESET} | $(git log -1 --color=always --pretty="format:${GIT_FORMAT3}" --date=short -- "$file")"
+  done
+}
+alias gdetails2='gitListFiles2'
+alias gfile2='gitListFiles2'
+alias gfiledetails2='gitListFiles2'
+
+gitListFiles3() {
+  # Default sort column and order
+  sort_col=1
+  sort_order=""
+  sort_name="Date"
+  fg_colors=("$WHITE" "$YELLOW" "$GREEN" "$YELLOW")
+  bg_colors=("$CYAN_BG" "$YELLOW_BG" "$GREEN_BG" "$YELLOW_BG")
+
+  # Parse flag
+  case "$1" in
+    -d)  sort_col=1; sort_order=""; sort_name="Date" ;;
+    -dr) sort_col=1; sort_order="-r"; sort_name="Date" ;;
+    -c)  sort_col=3; sort_order=""; sort_name="Commit" ;;
+    -cr) sort_col=3; sort_order="-r"; sort_name="Commit" ;;
+    -a)  sort_col=4; sort_order=""; sort_name="Author" ;;
+    -ar) sort_col=4; sort_order="-r"; sort_name="Author" ;;
+    -f)  sort_col=5; sort_order=""; sort_name="File" ;;
+    -fr) sort_col=5; sort_order="-r"; sort_name="File" ;;
+    *)
+      echo "Usage: git_file_commits [-d|-dr|-c|-cr|-a|-ar|-f|-fr]"
+      echo "  -d   : sort by date"
+      echo "  -dr  : sort by date (reverse)"
+      echo "  -c   : sort by commit hash"
+      echo "  -cr  : sort by commit hash (reverse)"
+      echo "  -a   : sort by author"
+      echo "  -ar  : sort by author (reverse)"
+      echo "  -f   : sort by file name"
+      echo "  -fr  : sort by file name (reverse)"
+      return 1
+      ;;
+  esac
+
+  repo_root=$(git rev-parse --show-toplevel)
+  current_dir=$(pwd)
+  rel_prefix=${current_dir#$repo_root/}
+
+  # Determine which column to highlight
+  # Index: 0=Date, 1=Commit, 2=Author, 3=File
+  highlight_idx=0
+  case "$sort_col" in
+    1) highlight_idx=0 ;;
+    3) highlight_idx=1 ;;
+    4) highlight_idx=2 ;;
+    5) highlight_idx=3 ;;
+  esac
+
+  # Print header with highlight
+  header=("Date" "Commit" "Author" "File")
+  for i in {0..3}; do
+    if [ "$i" -eq "$highlight_idx" ]; then
+      printf "${BOLD}${BLACK}${bg_colors[$i]}%-30s${RESET} " "${header[$i]}"
+    else
+      printf "${BOLD}${fg_colors[$i]}%-30s${RESET} " "${header[$i]}"
+    fi
+  done
+  printf "\n"
+
+  git log --pretty=format:'%cI|%ad|%h|%an' --name-only -- . | \
+  awk -F'|' '
+    NF == 4 { # commit info line
+      date_iso = $1
+      date_pretty = $2
+      commit_hash = $3
+      author = $4
+      next
+    }
+    NF == 1 && $1 != "" { # file line
+      file = $1
+      if (!(file in seen)) {
+        seen[file] = 1
+        print date_iso "|" date_pretty "|" commit_hash "|" author "|" file
+      }
+    }
+  ' | sort -t'|' -k"$sort_col" $sort_order | while IFS="|" read date_iso date_pretty commit_hash author file; do
+    # Remove prefix from file path
+    rel_file="$file"
+    if [[ -n "$rel_prefix" && "$rel_file" == "$rel_prefix/"* ]]; then
+      rel_file="${rel_file#$rel_prefix/}"
+    elif [[ -n "$rel_prefix" && "$rel_file" == "$rel_prefix"* ]]; then
+      rel_file="${rel_file#$rel_prefix}"
+    fi
+
+    # Prepare columns
+    cols=("$date_pretty" "$commit_hash" "$author" "$rel_file")
+    for i in {0..3}; do
+      if [ "$i" -eq "$highlight_idx" ]; then
+        printf "${BLACK}${bg_colors[$i]}%-30s${RESET} " "${cols[$i]}"
+      else
+        printf "${fg_colors[$i]}%-30s${RESET} " "${cols[$i]}"
+      fi
+    done
+    printf "\n"
+  done
+}
+alias gdetails3='gitListFiles3'
+alias gfile3='gitListFiles3'
+alias gfiledetails3='gitListFiles3'
+
+
+# Shell compatibility check (warn instead of exit)
+if [[ "$(readlink /proc/$$/exe)" == *"zsh" ]]; then
+  echo "Warning: This script is designed for bash, not zsh."
+fi
+
+# Bash completion
+if [ -f /usr/share/bash-completion/completions/git ]; then
+  . /usr/share/bash-completion/completions/git
+fi
+
+if [ -x "$(command -v __git_complete)" ]; then
+  __git_complete gadd _git_add
+  __git_complete gam _git_am
+  __git_complete gamend _git_commit
+  __git_complete gapply _git_apply
+  __git_complete garch _git_archive
+  __git_complete garchive _git_archive
+  __git_complete gbisect _git_bisect
+  __git_complete gbranch _git_branch
+  __git_complete gbranchd _git_branch
+  __git_complete gbranchdel _git_branch
+  __git_complete gbranchdelete _git_branch
+  __git_complete gbranchdell _git_branch
+  __git_complete gbranchdelr _git_push
+  __git_complete gbranchdl _git_branch
+  __git_complete gbranchdr _git_push
+  __git_complete gbundle _git_bundle
+  __git_complete gcheck _git_checkout
+  __git_complete gcheckout _git_checkout
+  __git_complete gcherry-pick _git_cherry_pick
+  __git_complete gcherrypick _git_cherry_pick
+  __git_complete gclean _git_clean
+  __git_complete gclone _git_clone
+  __git_complete gcomm _git_commit
+  __git_complete gcommit _git_commit
+  __git_complete gconf _git_config
+  __git_complete gconfig _git_config
+  __git_complete gdell _git_branch
+  __git_complete gdellocal _git_branch
+  __git_complete gdellocalbranch _git_branch
+  __git_complete gdelr _git_push
+  __git_complete gdelremote _git_push
+  __git_complete gdelremotebranch _git_push
+  __git_complete gdescr _git_describe
+  __git_complete gdescribe _git_describe
+  __git_complete gdiff _git_diff
+  __git_complete gdiffcommit _git_diff
+  __git_complete gdiffinline _git_diff
+  __git_complete gdiffstaged _git_diff
+  __git_complete gdiffthis _git_diff
+  __git_complete gdifftool _git_difftool
+  __git_complete gdiffv _git_diff
+  __git_complete gfetch _git_fetch
+  __git_complete gformat-patch _git_format_patch
+  __git_complete gfsck _git_fsck
+  __git_complete ggraph _git_log
+  __git_complete ggraph2 _git_log
+  __git_complete ggrep _git_grep
+  __git_complete ghelp _git_help
+  __git_complete ghistory _git_log
+  __git_complete ginit _git_init
+  __git_complete glog _git_log
+  __git_complete glogfiles _git_log
+  __git_complete glogstat _git_log
+  __git_complete gls-files _git_ls_files
+  __git_complete gls-remote _git_ls_remote
+  __git_complete gls-tree _git_ls_tree
+  __git_complete glstree _git_ls_tree
+  __git_complete gmerge _git_merge
+  __git_complete gmerge-base _git_merge_base
+  __git_complete gmergetool _git_mergetool
+  __git_complete gmv _git_mv
+  __git_complete gnotes _git_notes
+  __git_complete gpull _git_pull
+  __git_complete gpullr _git_pull
+  __git_complete gpush _git_push
+  __git_complete gpushnew _git_push
+  __git_complete grebase _git_rebase
+  __git_complete grebasei _git_rebase
+  __git_complete greflog _git_reflog
+  __git_complete gremote _git_remote
+  __git_complete gremotes _git_branch
+  __git_complete gallbranches _git_branch
+  __git_complete greplace _git_replace
+  __git_complete grerere _git_rerere
+  __git_complete greset _git_reset
+  __git_complete grestore _git_restore
+  __git_complete grevert _git_revert
+  __git_complete grm _git_rm
+  __git_complete gsend-email _git_send_email
+  __git_complete gshortlog _git_shortlog
+  __git_complete gshow _git_show
+  __git_complete gshow-branch _git_show_branch
+  __git_complete gstage _git_stage
+  __git_complete gstash _git_stash
+  __git_complete gstashlist _git_stash
+  __git_complete gstashunstaged _git_stash
+  __git_complete gstat _git_status
+  __git_complete gstatus _git_status
+  __git_complete gsubmodule _git_submodule
+  __git_complete gsvn _git_svn
+  __git_complete gtag _git_tag
+  __git_complete gtags _git_tag
+  __git_complete gunadd _git_reset
+  __git_complete gwhatchanged _git_whatchanged
+  __git_complete gworktree _git_worktree
+fi
+
+# WSL2 SSH breaks git, sadly...
+alias fixgit='unset SSH_AUTH_SOCK'
 
